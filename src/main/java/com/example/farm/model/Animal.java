@@ -20,18 +20,21 @@ public class Animal {
     )
     private Long id;
     private String name;
+    private String matriculate;
     private double weight;
 
     public Animal() {}
 
-    public Animal(Long id, String name, double weight) {
+    public Animal(Long id, String name, String matriculate, double weight) {
         this.id = id;
         this.name = name;
+        this.matriculate = matriculate;
         this.weight = weight;
     }
 
-    public Animal(String name, double weight) {
+    public Animal(String name, String matriculate, double weight) {
         this.name = name;
+        this.matriculate = matriculate;
         this.weight = weight;
     }
 
@@ -55,6 +58,14 @@ public class Animal {
         return id;
     }
 
+    public String getMatriculate() {
+        return matriculate;
+    }
+
+    public void setMatriculate(String matriculate) {
+        this.matriculate = matriculate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,4 +78,5 @@ public class Animal {
     public int hashCode() {
         return Objects.hash(getName(), getWeight());
     }
+
 }

@@ -14,8 +14,8 @@ public class AnimalConfiguration {
     @Bean
     CommandLineRunner commandLineRunnerAnimal(AnimalRepository repository){
         return args -> {
-            Animal pig = new Animal("Bob", 19.3);
-            Animal cow = new Animal("Marguerite", 639);
+            Animal pig = new Animal("Bob", "1234-ABC-9876", 19.3);
+            Animal cow = new Animal("Marguerite", "6473-PER-4724", 639);
 
             repository.saveAll(
                     List.of(pig, cow)

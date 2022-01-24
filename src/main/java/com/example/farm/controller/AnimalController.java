@@ -4,9 +4,7 @@ import com.example.farm.model.Animal;
 import com.example.farm.model.Farmer;
 import com.example.farm.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -26,5 +24,10 @@ public class AnimalController {
     @GetMapping
     public List<Animal> getAnimal() {
         return animalService.getAnimals();
+    }
+
+    @PostMapping
+    public void addAnimal(@RequestBody Animal animal){
+        animalService.addNewAnimal(animal);
     }
 }

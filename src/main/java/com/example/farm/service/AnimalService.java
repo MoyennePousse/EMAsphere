@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnimalService {
@@ -19,5 +20,13 @@ public class AnimalService {
 
     public List<Animal> getAnimals(){
         return animalRepository.findAll();
+    }
+
+    public void addNewAnimal(Animal animal) {
+        Optional<Animal> animalByMat = animalRepository.findAnimalByMatriculate(animal.getMatriculate());
+        if(animalByMat.isPresent()){
+            throw new IllegalStateException("Matriculate should be unique");
+        }
+        animalRepository.save(animal);
     }
 }
