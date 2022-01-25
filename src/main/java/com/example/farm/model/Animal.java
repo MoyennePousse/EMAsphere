@@ -1,5 +1,7 @@
 package com.example.farm.model;
 
+import com.example.farm.constant.Constant;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -21,20 +23,23 @@ public class Animal {
     private Long id;
     private String name;
     private String matriculate;
+    private Integer hungerMeter;
     private double weight;
 
     public Animal() {}
 
-    public Animal(Long id, String name, String matriculate, double weight) {
+    public Animal(Long id, String name, String matriculate, Integer hungerMeter, double weight) {
         this.id = id;
         this.name = name;
         this.matriculate = matriculate;
+        this.hungerMeter = hungerMeter;
         this.weight = weight;
     }
 
-    public Animal(String name, String matriculate, double weight) {
+    public Animal(String name, String matriculate, Integer hungerMeter, double weight) {
         this.name = name;
         this.matriculate = matriculate;
+        this.hungerMeter = hungerMeter;
         this.weight = weight;
     }
 
@@ -66,6 +71,27 @@ public class Animal {
         this.matriculate = matriculate;
     }
 
+    public Integer getHungerMeter() {
+        return hungerMeter;
+    }
+
+    public void setHungerMeter(Integer hungerMeter) {
+        if(this.hungerMeter + hungerMeter > 10){
+            throw new IllegalStateException("Animal already being feed");
+        }
+        else if(this.hungerMeter + hungerMeter < 0){
+            throw new IllegalStateException("Animal is too tired to do a walk");
+        }
+        this.hungerMeter += hungerMeter;
+    }
+
+    public void moveAnimalToWalk(int numberOfRounds) {
+        for(int i = 0; i < numberOfRounds; i++)
+        {
+            setHungerMeter(Constant.WALK);
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,5 +104,4 @@ public class Animal {
     public int hashCode() {
         return Objects.hash(getName(), getWeight());
     }
-
 }
