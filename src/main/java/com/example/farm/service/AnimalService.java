@@ -29,4 +29,13 @@ public class AnimalService {
         }
         animalRepository.save(animal);
     }
+
+    public void moveAnimalToWalk(Long idAnimal){
+        Optional<Animal> animalById = animalRepository.findById(idAnimal);
+        if(!animalById.isPresent()){
+            throw new IllegalStateException("Animal is not present");
+        }
+        animalById.get().moveAnimalToWalk();
+        animalRepository.save(animalById.get());
+    }
 }

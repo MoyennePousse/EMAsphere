@@ -23,12 +23,12 @@ public class Animal {
     private Long id;
     private String name;
     private String matriculate;
-    private Integer hungerMeter;
+    private int hungerMeter;
     private double weight;
 
     public Animal() {}
 
-    public Animal(Long id, String name, String matriculate, Integer hungerMeter, double weight) {
+    public Animal(Long id, String name, String matriculate, int hungerMeter, double weight) {
         this.id = id;
         this.name = name;
         this.matriculate = matriculate;
@@ -36,7 +36,7 @@ public class Animal {
         this.weight = weight;
     }
 
-    public Animal(String name, String matriculate, Integer hungerMeter, double weight) {
+    public Animal(String name, String matriculate, int hungerMeter, double weight) {
         this.name = name;
         this.matriculate = matriculate;
         this.hungerMeter = hungerMeter;
@@ -71,11 +71,11 @@ public class Animal {
         this.matriculate = matriculate;
     }
 
-    public Integer getHungerMeter() {
+    public int getHungerMeter() {
         return hungerMeter;
     }
 
-    public void setHungerMeter(Integer hungerMeter) {
+    public void setHungerMeter(int hungerMeter) {
         if(this.hungerMeter + hungerMeter > 10){
             throw new IllegalStateException("Animal already being feed");
         }
@@ -85,11 +85,8 @@ public class Animal {
         this.hungerMeter += hungerMeter;
     }
 
-    public void moveAnimalToWalk(int numberOfRounds) {
-        for(int i = 0; i < numberOfRounds; i++)
-        {
-            setHungerMeter(Constant.WALK);
-        }
+    public void moveAnimalToWalk() {
+        setHungerMeter(-Constant.WALK);
     }
 
     @Override

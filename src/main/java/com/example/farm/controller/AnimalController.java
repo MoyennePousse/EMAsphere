@@ -30,4 +30,9 @@ public class AnimalController {
     public void addAnimal(@RequestBody Animal animal){
         animalService.addNewAnimal(animal);
     }
+
+    @PutMapping(path = "/{id}")
+    public void moveAnimalToWalk(@PathVariable(value = "id") Long id){
+        animalService.moveAnimalToWalk(id);
+    }
 }
